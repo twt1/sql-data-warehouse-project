@@ -1,10 +1,10 @@
 /*
 ====================================================================================================
-Create and Bulk Insert Table of CRM system
+Create Table of CRM system
 ====================================================================================================
 Script Prupose:
-    The script will create and bulk insert the table of CRM system for bronze layer.
-    If the table exists, it is dropped and re-created and bulk insert the table as followed.
+    The script will create the table of CRM system for bronze layer.
+    If the table exists, it is dropped and re-created the table as followed.
         - bronze.crm_cust_info
         - bronze.crm_prd_info
         - bronze.crm_sales_details
@@ -33,16 +33,6 @@ CREATE TABLE bronze.crm_cust_info(
     cst_create_date DATE
 );
 
--- Bulk insert data to bronze.crm_cust_info table from .csv file in local for bronze layer 
-BULK INSERT bronze.crm_cust_info
-FROM '/var/opt/mssql/import/source_crm/cust_info.csv'
-WITH(
-    FIRSTROW = 2, 
-    FIELDTERMINATOR = ',',
-    TABLOCK
-);
-
-
 -- Drop table 'bronze.crm_prd_info' if already existed
 IF OBJECT_ID ('bronze.crm_prd_info', 'U') IS NOT NULL
     DROP TABLE bronze.crm_prd_info;
@@ -55,14 +45,6 @@ CREATE TABLE bronze.crm_prd_info(
     prd_line VARCHAR(20),
     prd_start_dt DATE,
     prd_end_dt DATE
-);
--- Bulk insert data to bronze.crm_prd_info table from .csv file in local for bronze layer 
-BULK INSERT bronze.crm_prd_info
-FROM '/var/opt/mssql/import/source_crm/prd_info.csv'
-WITH(
-    FIRSTROW = 2, 
-    FIELDTERMINATOR = ',',
-    TABLOCK
 );
 
 
@@ -80,12 +62,4 @@ CREATE TABLE bronze.crm_sales_details(
     sls_sales INT,
     sls_quantity INT,
     sls_price INT
-);
--- Bulk insert data to bronze.crm_sales_details table from .csv file in local for bronze layer 
-BULK INSERT bronze.crm_sales_details
-FROM '/var/opt/mssql/import/source_crm/sales_details.csv'
-WITH(
-    FIRSTROW = 2, 
-    FIELDTERMINATOR = ',',
-    TABLOCK
 );
