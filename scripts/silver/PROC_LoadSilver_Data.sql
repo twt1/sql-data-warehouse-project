@@ -84,7 +84,8 @@ BEGIN -- silver.load_silver
                 ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) flag_lasted
             FROM bronze.crm_cust_info
         )r
-        WHERE flag_lasted = 1;
+        WHERE flag_lasted = 1
+        AND cst_id IS NOT NULL;
         -- Set end time of crm_cust_info
         SET @end_time = GETDATE();
         PRINT 'End time : ' + CAST(@end_time AS VARCHAR);
@@ -312,6 +313,3 @@ BEGIN -- silver.load_silver
         PRINT '======================================================'
     END  CATCH
 END
-
-
---EXEC silver.load_silver;
