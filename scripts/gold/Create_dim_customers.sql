@@ -1,17 +1,15 @@
 /*
 ====================================================================================================
-Create View of Gold Layer
+Create dim_customers View of Gold Layer
 ====================================================================================================
 Script Prupose:
-    The script will create the view gold layer.
-    If the view exists, it is dropped and re-created the view as followed.
-        - gold.dim_customers
+    The script will create the view of gold layer. 
+    If the view exists, it is alter information in the view as followed.
         - gold.dim_products
-        - gold.fact_sales
 
 Warining :
-    Running this script will drop the entire table above if it exists.
-    All data in this table will be permanantly deleted. Preceed it with caution and 
+    Running this script will alter the information of the entire view above if it exists.
+    All data in this view will be updated. Preceed it with caution and 
     ensure you have proper backups before running this script.  
 */
   
