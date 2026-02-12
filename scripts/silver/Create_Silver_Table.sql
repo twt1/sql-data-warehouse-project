@@ -30,7 +30,8 @@ CREATE TABLE silver.crm_cust_info(
     cst_lastname VARCHAR(50),
     cst_marital_status VARCHAR(10),
     cst_gndr VARCHAR(10),
-    cst_create_date DATE
+    cst_create_date DATE,
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 -- Drop table 'silver.crm_prd_info' if already existed
@@ -39,12 +40,14 @@ IF OBJECT_ID ('silver.crm_prd_info', 'U') IS NOT NULL
 -- Create prd_info for silver layer
 CREATE TABLE silver.crm_prd_info(
     prd_id INT,
+    cat_id VARCHAR(10),
     prd_key VARCHAR(30),
     prd_nm VARCHAR(50),
     prd_cost INT,
     prd_line VARCHAR(20),
     prd_start_dt DATE,
-    prd_end_dt DATE
+    prd_end_dt DATE,
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 -- Drop table 'silver.crm_sales_details' if already existed
@@ -55,12 +58,13 @@ CREATE TABLE silver.crm_sales_details(
     sls_ord_num VARCHAR(20),
     sls_prd_key VARCHAR(20),
     sls_cust_id INT,
-    sls_order_dt INT,
-    sls_ship_dt INT,
-    sls_due_dt INT,
+    sls_order_dt DATE,
+    sls_ship_dt DATE,
+    sls_due_dt DATE,
     sls_sales INT,
     sls_quantity INT,
-    sls_price INT
+    sls_price INT,
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 /*
@@ -80,14 +84,19 @@ Warining :
     ensure you have proper backups before running this script.  
 */
 
+-- Use DataWarehouse database
+USE DataWarehouse
+GO
+
 -- Drop and re-created silver.erp_cust_az21 table
 IF OBJECT_ID('silver.erp_cust_az21', 'U') IS NOT NULL
     DROP TABLE silver.erp_cust_az21;
 -- Create table silver.erp_cust_az21 for silver layer
 CREATE TABLE silver.erp_cust_az21(
-    CID VARCHAR(20),
-    BDATE DATE,
-    GEN VARCHAR(20)
+    cid VARCHAR(20),
+    bdate DATE,
+    gen VARCHAR(50),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
 -- Drop and re-created silver.erp_loc_a101 table
@@ -95,8 +104,9 @@ IF OBJECT_ID('silver.erp_loc_a101', 'U') IS NOT NULL
     DROP TABLE silver.erp_loc_a101;
 -- Create table silver.loc_a101 for silver layer
 CREATE TABLE silver.erp_loc_a101(
-    CID VARCHAR(20),
-    CNTRY VARCHAR(20)
+    cid VARCHAR(20),
+    cntry VARCHAR(20),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
 -- Drop and re-created silver.erp_px_cat_giv2 table
@@ -104,10 +114,11 @@ IF OBJECT_ID('silver.erp_px_cat_giv2', 'U') IS NOT NULL
     DROP TABLE silver.erp_px_cat_giv2;
 -- Create table silver.erp_px_cat_giv2 for silver layer
 CREATE TABLE silver.erp_px_cat_giv2(
-    ID VARCHAR(20),
-    CAT VARCHAR(50),
-    SUBCAT VARCHAR(20),
-    MAINTENANCE VARCHAR(20)
+    id VARCHAR(20),
+    cat VARCHAR(50),
+    subcat VARCHAR(50),
+    maintenance VARCHAR(50),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
 
