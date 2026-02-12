@@ -4,7 +4,7 @@ Quility Checks of silver.crm_cust_info Table
 =================================================================================================
 Script Purpose : 
     This script performs various quality checks for the data consistency, accuracy,
-    and standardization across the 'silver' schema. It includes checks for folling. 
+    and standardization across the 'silver' schema. It includes checks for following. 
     - Null or Duplicated primary keys.  
     - Unwanted spaces of stting fields.
 
