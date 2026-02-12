@@ -14,15 +14,8 @@ Warining :
     All data in this table will be permanantly deleted. Preceed it with caution and 
     ensure you have proper backups before running this script.  
 */
-
--- Using DataWarehouse database
-USE DataWarehouse;
-GO
-
-IF OBJECT_ID('gold.dim_customers', 'U')
-    DROP VIEW gold.dim_customers;
   
-CREATE VIEW gold.dim_customers AS(
+CREATE OR ALTER VIEW gold.dim_customers AS(
     SELECT
         ROW_NUMBER() OVER (ORDER BY ci.cst_id) AS customer_key,
         ci.cst_id AS customer_id,
@@ -46,7 +39,7 @@ CREATE VIEW gold.dim_customers AS(
 
 
 
-CREATE VIEW gold.dim_products AS (
+CREATE OR ALTER VIEW  gold.dim_products AS (
     SELECT 
         ROW_NUMBER() OVER(ORDER BY pi.prd_key, pi.prd_start_dt) product_key,
         pi.prd_id AS procuct_id,
@@ -67,7 +60,7 @@ WHERE pi.prd_end_dt IS NULL -- filter out all historical date
 
 
 
-CREATE VIEW gold.fact_sales AS(
+CREATE OR ALTER VIEW  gold.fact_sales AS(
     SELECT
         sd.sls_ord_num AS order_number,
         dp.product_key,
