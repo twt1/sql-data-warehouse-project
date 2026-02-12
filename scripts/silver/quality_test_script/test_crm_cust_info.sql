@@ -7,6 +7,7 @@ Script Purpose :
     and standardization across the 'silver' schema. It includes checks for following. 
     - Null or Duplicated primary keys.  
     - Unwanted spaces of stting fields.
+    - Data standardization and consistency
 
 Usage Note :
     - Run the checks script after loading the silver data from procedure : silver.load_silver 
