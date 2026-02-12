@@ -19,7 +19,8 @@ Warining :
 USE DataWarehouse;
 GO
 
-DROP VIEW gold.dim_customers;
+IF OBJECT_ID('gold.dim_customers', 'U')
+    DROP VIEW gold.dim_customers;
   
 CREATE VIEW gold.dim_customers AS(
     SELECT
