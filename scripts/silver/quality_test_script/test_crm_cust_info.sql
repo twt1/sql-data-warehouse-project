@@ -16,7 +16,7 @@ Usage Note :
 
 -- ============================================================================
 -- Refference table result 
--- Expectation : Top 20 record
+-- Expectation : Top 10 record
 -- ============================================================================
 select top(10) * from silver.crm_cust_info
 
