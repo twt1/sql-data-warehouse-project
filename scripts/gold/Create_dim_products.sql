@@ -18,10 +18,10 @@ CREATE OR ALTER VIEW  gold.dim_products AS (
         ROW_NUMBER() OVER(ORDER BY pi.prd_key, pi.prd_start_dt) product_key,
         pi.prd_id AS procuct_id,
         pg.maintenance,
-        pi.cat_id AS category_id,
         pi.prd_key AS product_number,
         pi.prd_nm AS product_name,
         pi.prd_line AS product_line,
+        pi.cat_id AS category_id,
         pg.cat AS category,
         pg.subcat AS sub_category,
         pi.prd_cost AS product_cost,
@@ -31,3 +31,4 @@ CREATE OR ALTER VIEW  gold.dim_products AS (
     ON pi.cat_id = pg.id
 WHERE pi.prd_end_dt IS NULL -- filter out all historical date
 )
+
