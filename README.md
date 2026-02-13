@@ -16,11 +16,12 @@ It work with information of ERP and CRM system as following details.
      1. Understand the requirement
      2. Select the data architecture : Medallion architecture
      3. Design the high level of data architecture
-     4. Process of Bronze Leyer
-     5. Process of Silver Leyer
-     6. Process of Gold Leyer
-     7. Create data catelogs
-     8. Update github repository
+     4. Convention the naming rule of project
+     5. Process of Bronze Leyer
+     6. Process of Silver Leyer
+     7. Process of Gold Leyer
+     8. Create data catelogs
+     9. Update github repository
 
 1. Understand the requirement
    - This project need relation between customer, product and sales order from ERP and CRM system to analyst.
@@ -34,7 +35,10 @@ It work with information of ERP and CRM system as following details.
      --------    |    ---------------    |    ---------------    |   ---------------
      ERP        -->     Bronze Leyer    -->     Silver Leyer    -->     Gold Leyer
      CRM         |        Database       |        Database       |       Database
-
+     
+4. Process Bronze Leyer
+   - Create procedure to proform bulk insert the data to bronze layer as following table
+     1. bronze.crm_cust_info
      
 **Summary: **
 
