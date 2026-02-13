@@ -1,80 +1,109 @@
-# Data Warehouse Project
-Building a model data warehouse using SQL Server, including ELT processes, data modeling.
+Data Warehouse Project
 
-**Into : **
-This project is my practial for process of data warehousing, using 'Medallion' design to perform the ELT process.
-It work with information of ERP and CRM system as following details. 
-1. Sale order
-2. Production infromation
-3. Customer information
+Building a model data warehouse using SQL Server, including ELT processes and data modeling.
 
-**Project details:**
+Intro:
+
+This project is my practical work for the data warehousing process, using the ‘Medallion’ design to perform the ELT process.
+It works with information from ERP and CRM systems as follows:
+	1.	Sales order
+	2.	Production information
+	3.	Customer information
+
+⸻
+
+Project details:
+
 0. Create work process instruction with Notion
-   To overview with the project, the work process is created as following details
-     1. Understand the requirement
-     2. Select the data architecture : Medallion architecture
-     3. Design the high level of data architecture
-     4. Create data relation and data object relation of source 
-     4. Convention the naming rule of project
-     5. Process of Bronze Layer
-     6. Process of Silver Layer
-     7. Process of Gold Leyer
-     8. Create data catelogs
-     9. Update github repository
+
+To provide an overview of the project, the work process is created as follows:
+	1.	Understand the requirement
+	2.	Select the data architecture: Medallion architecture
+	3.	Design the high-level data architecture
+	4.	Create data relations and data object relations of the source
+	5.	Define the naming convention of the project
+	6.	Process of Bronze Layer
+	7.	Process of Silver Layer
+	8.	Process of Gold Layer
+	9.	Create data catalogs
+	10. Update GitHub repository
+
+⸻
 
 1. Understand the requirement
-   - This project need relation between customer, product and sales order from ERP and CRM system to analyst.
-  
-2. Select the data architecture : Medallion architecture
-   - The Medallion architecture is provide a clear and straightforward to understand the ELT process.
-     
-3. Desinge the high level of data architecture
-   - To understand the overview of data flow, the high level of data architecture is created.
-     Source      |      Bronze Layer     |      Silver Leyer     |      Gold Leyer
-     --------    |    ---------------    |    ---------------    |   ---------------
-     ERP        -->     Bronze Leyer    -->     Silver Leyer    -->     Gold Leyer
-     CRM         |        Database       |        Database       |       Database
-     
-4. Create data relation and data object relation of source 
-   - Find the relation of each table and draw primary key in entity diagram.
-   - Draw the data object relation to tag the table label
-   
-5. Process Bronze Layer
-   - Extract date from source and Load to bronze layer database 
-   - Create procedure to preform bulk insert the data to bronze layer as following table
-     1. bronze.crm_cust_info
-     2. bronze.crm_prd_info
-     3. bronze.crm_sales_details
-     4. bronze.erp_cust_az21
-     5. bronze.erp_loc_a101
-     6. bronze.erp_px_cat_giv2
-   - Create data flow diagram between source and bronze layer
-   - Update source to github
-        
+	•	This project requires relationships between customers, products, and sales orders from ERP and CRM systems for analysis.
+
+⸻
+
+2. Select the data architecture: Medallion architecture
+	•	The Medallion architecture provides a clear and straightforward way to understand the ELT process.
+
+⸻
+
+3. Design the high-level data architecture
+	•	To understand the overview of the data flow, the high-level data architecture is created.
+      Source      |   Bronze Layer   |   Silver Layer   |   Gold Layer
+      --------    | ---------------  | ---------------  | ---------------
+      ERP         --> Bronze Layer   --> Silver Layer   --> Gold Layer
+      CRM         |   Database       |    Database      |    Database
+4. Create data relations and data object relations of the source
+	•	Identify the relationships of each table and define primary keys in the entity diagram.
+	•	Draw the data object relationships to tag table labels.
+
+⸻
+
+5. Process of Bronze Layer
+	•	Extract data from the source and load it into the bronze layer database.
+	•	Create procedures to perform bulk insert of the data into the bronze layer tables as follows:
+	1.	bronze.crm_cust_info
+	2.	bronze.crm_prd_info
+	3.	bronze.crm_sales_details
+	4.	bronze.erp_cust_az21
+	5.	bronze.erp_loc_a101
+	6.	bronze.erp_px_cat_giv2
+	•	Draw a data flow diagram between the source and bronze layer.
+	•	Update the source code to GitHub.
+
+⸻
+
 6. Process of Silver Layer
-   - Transform the messive data from bronze layer as following method
-     1. Check null or duplicated data from primary key
-     2. Check unwanted spaces of string
-     3. Check null or negative value of int
-     4. Verify the date such as date range or date comparision
-     5. Standardization and consistency the data of abbreviation string such as gender or country
-     6. Check non relation with related talbe
-   - Load to silver layer database
-   - Create procedure to insert the transform data to silver layer table
-     1. silver.crm_cust_info
-     2. silver.crm_prd_info
-     3. silver.crm_sales_details
-     4. silver.erp_cust_az21
-     5. silver.erp_loc_a101
-     6. silver.erp_px_cat_giv2
-   - Verify the completed load data of silver layer by quality check script refference to transform data
-   - Create data flow diagram between bronze layer and silver layer
-   - Update source code to github
-     
-7. Process of Gold layer
-     
-     
-**Summary: **
+	•	Transform the massive data from the bronze layer using the following methods:
+	1.	Check null or duplicate data in primary keys
+	2.	Remove unwanted spaces in strings
+	3.	Check null or negative integer values
+	4.	Verify dates such as date range or date comparison
+	5.	Standardize and ensure consistency of abbreviated strings such as gender or country
+	6.	Check missing relationships with related tables
+	•	Load data into the silver layer database.
+	•	Create procedures to insert the transformed data into silver layer tables:
+	1.	silver.crm_cust_info
+	2.	silver.crm_prd_info
+	3.	silver.crm_sales_details
+	4.	silver.erp_cust_az21
+	5.	silver.erp_loc_a101
+	6.	silver.erp_px_cat_giv2
+	•	Verify the completed load of the silver layer using quality check scripts referenced from the transformation rules.
+	•	Draw a data flow diagram between the bronze and silver layers.
+	•	Update source code to GitHub.
 
+⸻
 
+7. Process of Gold Layer
+	•	Analyze the data object relationships to create views.
+	•	Create scripts to generate views:
+	1.	gold.dim_customers
+	2.	gold.dim_products
+	3.	gold.fact_sales
+	•	Validate the views using integration checks.
+	•	Draw a data flow diagram between the silver and gold layers.
+	•	Update source code to GitHub.
 
+⸻
+
+8. Create data catalog
+	•	Create documentation for views in the gold layer, describing the meaning of each column for business users.
+
+⸻
+
+9. Update GitHub repository
+	•	Update and verify that everything created in the project is uploaded to GitHub, including data sources, design, code, etc.
