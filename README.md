@@ -9,6 +9,9 @@ The objective is to integrate and transform data from ERP and CRM systems to sup
 	•	Product information<br>
 	•	Sales orders
 
+Notion plan : https://dolomite-rainbow-3b8.notion.site/SQL-Data-Warehouse-Project-302d2a5320c680c99a5ed1b232526286?source=copy_link
+
+
 ⸻
 
 🏗 Architecture Design – Medallion Framework
